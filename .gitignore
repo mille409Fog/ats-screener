@@ -1,0 +1,25 @@
+# Python caches and build output
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Virtual environments and local secrets
+.venv/
+venv/
+env/
+.env
+
+# Personal application files: keep resumes, reports and prompts out of a public repo.
+# Only the fictional sample resume is allowed through.
+*.pdf
+!examples/sample_resume.pdf
+*.docx
+*_report.md
+report.md
+*_prompt.txt
+prompt.txt
