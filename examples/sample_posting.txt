@@ -1,0 +1,31 @@
+Senior Backend Engineer - Fernhollow Freight (fictional sample posting)
+
+About Fernhollow
+Fernhollow Freight is an invented regional shipping company used as sample data for ats-screener. We move pallets for small manufacturers and build the software that schedules our trucks.
+
+What you'll do
+- Design and own REST APIs that dispatchers and drivers rely on every day
+- Lead code review and mentor two junior engineers
+- Write design docs for new routing features
+
+What we're looking for
+- 5+ years of professional experience building backend services in Python
+- Experience with PostgreSQL and data modeling
+- Comfort writing automated tests and working with CI/CD
+
+Our stack
+Python, FastAPI, PostgreSQL, Redis, Docker, AWS, React, TypeScript
+
+Nice to have
+- Kafka or another event-driven system
+- Terraform
+- Experience with Datadog
+
+Location
+Hybrid, with two office days a week in our (fictional) Millbrook office.
+
+Compensation
+Salary: $140,000 - $170,000 base, plus benefits.
+
+Benefits
+Health insurance, 401(k) match, and a yearly learning stipend.
