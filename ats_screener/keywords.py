@@ -99,8 +99,17 @@ def find_terms(text: str) -> dict[str, list[re.Match[str]]]:
                     continue  # "go to the store" is not Go
                 matches.append(m)
         if matches:
-            found[term] = matches
+            found[term] = _drop_overlaps(matches)
     return found
+
+
+def _drop_overlaps(matches: list[re.Match[str]]) -> list[re.Match[str]]:
+    """Keep one match per stretch of text, preferring the longest ("rest apis" over "rest")."""
+    kept: list[re.Match[str]] = []
+    for m in sorted(matches, key=lambda m: (m.start() - m.end(), m.start())):
+        if all(m.end() <= k.start() or m.start() >= k.end() for k in kept):
+            kept.append(m)
+    return sorted(kept, key=lambda m: m.start())
 
 
 def _is_heading(line: str) -> bool:

@@ -67,6 +67,25 @@ def test_term_matching(text, term, expected):
     assert (term in find_terms(text)) is expected
 
 
+@pytest.mark.parametrize("text,term", [
+    ("Design REST APIs", "REST APIs"),
+    ("Experience with CI/CD", "CI/CD"),
+    ("Build event-driven systems", "Event-driven systems"),
+    ("Apps in React.js", "React"),
+    ("Java and Spring Boot", "Spring"),
+])
+def test_overlapping_spellings_count_once(text, term):
+    assert len(find_terms(text)[term]) == 1
+
+
+def test_separate_mentions_still_count():
+    assert len(find_terms("Python services; Python 3 tooling")["Python"]) == 2
+    cov = coverage("Requirements\nDesign REST APIs\nWork with CI/CD", RESUME)
+    by_term = {h.term: h for h in cov.hits}
+    assert by_term["REST APIs"].posting_count == 1
+    assert by_term["CI/CD"].posting_count == 1
+
+
 # ---- tiers -----------------------------------------------------------------
 
 def test_tiers_follow_headings():

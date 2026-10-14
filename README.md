@@ -58,14 +58,14 @@ Excerpt of the output:
 ```
 ## 2. Keyword coverage
 
-**Skills score: 85.9 / 100** (weighted share of the posting's terms that appear on the resume; required terms count double)
+**Skills score: 86.1 / 100** (weighted share of the posting's terms that appear on the resume; required terms count double)
 
 ### Nice to have
 
 | Term | On resume | Mentions in posting |
 | --- | --- | --- |
-| Event-driven systems | **missing** | 2 |
 | Datadog | **missing** | 1 |
+| Event-driven systems | **missing** | 1 |
 | Kafka | **missing** | 1 |
 | Terraform | **missing** | 1 |
 ```
