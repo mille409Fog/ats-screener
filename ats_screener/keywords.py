@@ -40,6 +40,12 @@ YEARS_RE = re.compile(
     re.I,
 )
 
+BULLET_RE = re.compile(r"^[-•*]+\s*")
+
+
+def _clean_line(line: str) -> str:
+    return BULLET_RE.sub("", " ".join(line.split()))
+
 
 @dataclass
 class TermHit:
@@ -180,10 +186,10 @@ def coverage(posting: str, resume: str) -> CoverageReport:
 
     for line, tier in tiered:
         if tier != "skip" and YEARS_RE.search(line) and len(line.strip()) < 300:
-            report.years_requirements.append(" ".join(line.split()))
+            report.years_requirements.append(_clean_line(line))
 
     for label, rx in KNOCKOUT_PATTERNS.items():
-        lines = [" ".join(l.split()) for l in posting.splitlines() if re.search(rx, l, re.I)]
+        lines = [_clean_line(l) for l in posting.splitlines() if re.search(rx, l, re.I)]
         if lines:
             report.knockouts[label] = [l[:220] for l in lines[:3]]
 

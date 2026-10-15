@@ -124,6 +124,18 @@ def test_coverage_scores_and_reports_missing_terms():
     assert "Compensation" in cov.knockouts
 
 
+def test_posting_bullets_are_stripped():
+    from ats_screener.parse import check_text
+    from ats_screener.report import render
+    posting = "Requirements\n- 5+ years of Python\n• Must be able to work on-site\n* Visa sponsorship not available"
+    cov = coverage(posting, RESUME)
+    assert cov.years_requirements == ["5+ years of Python"]
+    assert cov.knockouts["Location / on-site"] == ["Must be able to work on-site"]
+    assert cov.knockouts["Work authorization / sponsorship"] == ["Visa sponsorship not available"]
+    text = render(check_text(RESUME), cov, "r.pdf", "p.txt")
+    assert "- 5+ years of Python" in text and "- - " not in text
+
+
 def test_funding_amount_is_not_a_salary():
     cov = coverage("We raised $325M+ in funding.", RESUME)
     assert "Compensation" not in cov.knockouts
